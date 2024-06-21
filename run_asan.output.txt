@@ -1,0 +1,447 @@
++ ./build/ros_segfault_min_direct InitNode
+AddressSanitizer:DEADLYSIGNAL
+AddressSanitizer:DEADLYSIGNAL
+AddressSanitizer:DEADLYSIGNAL
+AddressSanitizer:DEADLYSIGNAL
+AddressSanitizer:DEADLYSIGNAL
+AddressSanitizer:DEADLYSIGNAL
+AddressSanitizer:DEADLYSIGNAL
+./run_asan.sh: line 33: 781661 Segmentation fault      (core dumped) ./build/ros_segfault_min_direct InitNode
++ echo
+
++ ./build/ros_segfault_min_direct InitAndLeakNode
+
+=================================================================
+==781663==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 896 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5c71f080 in InitAndLeakNode (/home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so+0xa080)
+    #2 0x5fadbb2d433c in main (/home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct+0x233c)
+    #3 0x70ec5aa29d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+Indirect leak of 2080 byte(s) in 5 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb9d944  (/opt/ros/humble/lib/librclcpp.so+0x193944)
+
+Indirect leak of 1872 byte(s) in 6 object(s) allocated from:
+    #0 0x70ec5bcb4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x70ec5c6f51cf in rcl_service_init (/opt/ros/humble/lib/librcl.so+0x251cf)
+
+Indirect leak of 872 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb78bfa in std::_Function_handler<std::shared_ptr<rclcpp::SubscriptionBase> (rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&), rclcpp::create_subscription_factory<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}, std::allocator<void>, rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void>, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> > >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > >(rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}&&, rclcpp::SubscriptionOptionsWithAllocator<std::allocator<void> > const&, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > > >)::{lambda(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&)#1}>::_M_invoke(std::_Any_data const&, rclcpp::node_interfaces::NodeBaseInterface*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&) (/opt/ros/humble/lib/librclcpp.so+0x16ebfa)
+    #2 0x70ec5bb721e2  (/opt/ros/humble/lib/librclcpp.so+0x1681e2)
+
+Indirect leak of 504 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb26d6c in std::_Function_handler<std::shared_ptr<rclcpp::PublisherBase> (rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&), rclcpp::create_publisher_factory<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void>, rclcpp::Publisher<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> > >(rclcpp::PublisherOptionsWithAllocator<std::allocator<void> > const&)::{lambda(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&)#1}>::_M_invoke(std::_Any_data const&, rclcpp::node_interfaces::NodeBaseInterface*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&) (/opt/ros/humble/lib/librclcpp.so+0x11cd6c)
+
+Indirect leak of 488 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb6c214 in rclcpp::TimeSource::TimeSource(rclcpp::QoS const&, bool) (/opt/ros/humble/lib/librclcpp.so+0x162214)
+
+Indirect leak of 432 byte(s) in 16 object(s) allocated from:
+    #0 0x70ec5bcb4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x70ec5b99477f in rmw_allocate (/opt/ros/humble/lib/librmw.so+0x377f)
+
+Indirect leak of 430 byte(s) in 8 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5af4bfee in std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/lib/x86_64-linux-gnu/libstdc++.so.6+0x14bfee)
+
+Indirect leak of 347 byte(s) in 10 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb9634c  (/opt/ros/humble/lib/librclcpp.so+0x18c34c)
+
+Indirect leak of 336 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09bc6 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffbc6)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 312 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb0a582 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100582)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 312 byte(s) in 3 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb958ae  (/opt/ros/humble/lib/librclcpp.so+0x18b8ae)
+
+Indirect leak of 288 byte(s) in 9 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bafe287 in rclcpp::get_logger(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/opt/ros/humble/lib/librclcpp.so+0xf4287)
+
+Indirect leak of 256 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb1188e in rclcpp::node_interfaces::NodeBase::create_callback_group(rclcpp::CallbackGroupType, bool) (/opt/ros/humble/lib/librclcpp.so+0x10788e)
+    #2 0x70ec5bb09bf6 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffbf6)
+    #3 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 248 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb200d7 in void* rclcpp::allocator::retyped_zero_allocate<std::allocator<char> >(unsigned long, unsigned long, void*) (/opt/ros/humble/lib/librclcpp.so+0x1160d7)
+
+Indirect leak of 248 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5c6f331c in rcl_publisher_init (/opt/ros/humble/lib/librcl.so+0x2331c)
+
+Indirect leak of 232 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb0a79c in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x10079c)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 216 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb57425  (/opt/ros/humble/lib/librclcpp.so+0x14d425)
+    #2 0x60300000e34f  (<unknown module>)
+
+Indirect leak of 216 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb56645  (/opt/ros/humble/lib/librclcpp.so+0x14c645)
+    #2 0x60300000e34f  (<unknown module>)
+
+Indirect leak of 216 byte(s) in 9 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bafe2bb in rclcpp::get_logger(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/opt/ros/humble/lib/librclcpp.so+0xf42bb)
+
+Indirect leak of 216 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb59241 in rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (/opt/ros/humble/lib/librclcpp.so+0x14f241)
+    #2 0x70ec5bb1b350 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x111350)
+
+Indirect leak of 216 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb5a31a in rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (/opt/ros/humble/lib/librclcpp.so+0x15031a)
+    #2 0x70ec5bb1b350 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x111350)
+
+Indirect leak of 216 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb55865  (/opt/ros/humble/lib/librclcpp.so+0x14b865)
+    #2 0x60300000e34f  (<unknown module>)
+
+Indirect leak of 216 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb598f8 in rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (/opt/ros/humble/lib/librclcpp.so+0x14f8f8)
+    #2 0x70ec5bb1b350 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x111350)
+
+Indirect leak of 160 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bae4b8d in rclcpp::Clock::Clock(rcl_clock_type_e) (/opt/ros/humble/lib/librclcpp.so+0xdab8d)
+
+Indirect leak of 160 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09c68 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffc68)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 144 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb790e3 in std::_Function_handler<std::shared_ptr<rclcpp::SubscriptionBase> (rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&), rclcpp::create_subscription_factory<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}, std::allocator<void>, rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void>, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> > >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > >(rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}&&, rclcpp::SubscriptionOptionsWithAllocator<std::allocator<void> > const&, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > > >)::{lambda(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&)#1}>::_M_invoke(std::_Any_data const&, rclcpp::node_interfaces::NodeBaseInterface*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&) (/opt/ros/humble/lib/librclcpp.so+0x16f0e3)
+    #2 0x70ec5bb721e2  (/opt/ros/humble/lib/librclcpp.so+0x1681e2)
+
+Indirect leak of 144 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb719ef  (/opt/ros/humble/lib/librclcpp.so+0x1679ef)
+
+Indirect leak of 144 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb26822  (/opt/ros/humble/lib/librclcpp.so+0x11c822)
+
+Indirect leak of 128 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bae0b1c in rclcpp::CallbackGroup::add_service(std::shared_ptr<rclcpp::ServiceBase>) (/opt/ros/humble/lib/librclcpp.so+0xd6b1c)
+
+Indirect leak of 112 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb1b2c9 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x1112c9)
+
+Indirect leak of 104 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09ea8 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffea8)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb59c1e in rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (/opt/ros/humble/lib/librclcpp.so+0x14fc1e)
+    #2 0x70ec5bb1b350 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x111350)
+
+Indirect leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb57717  (/opt/ros/humble/lib/librclcpp.so+0x14d717)
+
+Indirect leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb55b57  (/opt/ros/humble/lib/librclcpp.so+0x14bb57)
+
+Indirect leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb56937  (/opt/ros/humble/lib/librclcpp.so+0x14c937)
+
+Indirect leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb5a5e2 in rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (/opt/ros/humble/lib/librclcpp.so+0x1505e2)
+    #2 0x70ec5bb1b350 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x111350)
+
+Indirect leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb581fe  (/opt/ros/humble/lib/librclcpp.so+0x14e1fe)
+    #2 0x70ec5bb1b350 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x111350)
+
+Indirect leak of 64 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5c6de20e in rcl_subscription_event_init (/opt/ros/humble/lib/librcl.so+0xe20e)
+
+Indirect leak of 64 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5c6ddffe in rcl_publisher_event_init (/opt/ros/humble/lib/librcl.so+0xdffe)
+
+Indirect leak of 56 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x70ec5c6ded22  (/opt/ros/humble/lib/librcl.so+0xed22)
+    #2 0x70ec5bb11c17 in rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x107c17)
+    #3 0x70ec5bb09bf6 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffbf6)
+    #4 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 48 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb6c09e  (/opt/ros/humble/lib/librclcpp.so+0x16209e)
+
+Indirect leak of 40 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb69c98 in rclcpp::SubscriptionBase::SubscriptionBase(rclcpp::node_interfaces::NodeBaseInterface*, rosidl_message_type_support_t const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rcl_subscription_options_s const&, bool) (/opt/ros/humble/lib/librclcpp.so+0x15fc98)
+
+Indirect leak of 40 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb6211f in rclcpp::PublisherBase::PublisherBase(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rosidl_message_type_support_t const&, rcl_publisher_options_s const&) (/opt/ros/humble/lib/librclcpp.so+0x15811f)
+
+Indirect leak of 40 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb11d72 in rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x107d72)
+    #2 0x70ec5bb09bf6 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffbf6)
+    #3 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb120e7 in rclcpp::node_interfaces::NodeClock::NodeClock(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>) (/opt/ros/humble/lib/librclcpp.so+0x1080e7)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bae1815 in rclcpp::CallbackGroup::add_waitable(std::shared_ptr<rclcpp::Waitable>) (/opt/ros/humble/lib/librclcpp.so+0xd7815)
+
+Indirect leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb79afb in std::_Function_handler<std::shared_ptr<rclcpp::SubscriptionBase> (rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&), rclcpp::create_subscription_factory<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}, std::allocator<void>, rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void>, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> > >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > >(rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}&&, rclcpp::SubscriptionOptionsWithAllocator<std::allocator<void> > const&, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > > >)::{lambda(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&)#1}>::_M_invoke(std::_Any_data const&, rclcpp::node_interfaces::NodeBaseInterface*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&) (/opt/ros/humble/lib/librclcpp.so+0x16fafb)
+    #2 0x70ec5bb721e2  (/opt/ros/humble/lib/librclcpp.so+0x1681e2)
+
+Indirect leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09cbd in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffcbd)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb26a6c  (/opt/ros/humble/lib/librclcpp.so+0x11ca6c)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09f0e in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xfff0e)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bae4be0 in rclcpp::Clock::Clock(rcl_clock_type_e) (/opt/ros/humble/lib/librclcpp.so+0xdabe0)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09dde in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffdde)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09d8c in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffd8c)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09d65 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffd65)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09d33 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffd33)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09ce1 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffce1)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb0a8da in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x1008da)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb0a801 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100801)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb79a36 in std::_Function_handler<std::shared_ptr<rclcpp::SubscriptionBase> (rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&), rclcpp::create_subscription_factory<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}, std::allocator<void>, rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void>, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> > >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > >(rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}&&, rclcpp::SubscriptionOptionsWithAllocator<std::allocator<void> > const&, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > > >)::{lambda(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&)#1}>::_M_invoke(std::_Any_data const&, rclcpp::node_interfaces::NodeBaseInterface*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&) (/opt/ros/humble/lib/librclcpp.so+0x16fa36)
+    #2 0x70ec5bb721e2  (/opt/ros/humble/lib/librclcpp.so+0x1681e2)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb76cd3  (/opt/ros/humble/lib/librclcpp.so+0x16ccd3)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb733ca  (/opt/ros/humble/lib/librclcpp.so+0x1693ca)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb71adb  (/opt/ros/humble/lib/librclcpp.so+0x167adb)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09c8f in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffc8f)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb71a9a  (/opt/ros/humble/lib/librclcpp.so+0x167a9a)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb71a59  (/opt/ros/humble/lib/librclcpp.so+0x167a59)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09c0e in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffc0e)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb0a60d in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x10060d)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5b09bd12  (/opt/ros/humble/lib/librmw_cyclonedds_cpp.so+0x25d12)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb23037  (/opt/ros/humble/lib/librclcpp.so+0x119037)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb1afe1 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x110fe1)
+
+Indirect leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5badfe1c in rclcpp::CallbackGroup::add_subscription(std::shared_ptr<rclcpp::SubscriptionBase>) (/opt/ros/humble/lib/librclcpp.so+0xd5e1c)
+
+Indirect leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb6c0f7  (/opt/ros/humble/lib/librclcpp.so+0x1620f7)
+
+Indirect leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09d0f in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffd0f)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x70ec5c6f6526 in rcl_ros_clock_init (/opt/ros/humble/lib/librcl.so+0x26526)
+
+Indirect leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb11a4e in rclcpp::node_interfaces::NodeBase::create_callback_group(rclcpp::CallbackGroupType, bool) (/opt/ros/humble/lib/librclcpp.so+0x107a4e)
+
+Indirect leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb0a8a9 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x1008a9)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb6c81e in rclcpp::TimeSource::attachClock(std::shared_ptr<rclcpp::Clock>) (/opt/ros/humble/lib/librclcpp.so+0x16281e)
+
+Indirect leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb09dba in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0xffdba)
+    #2 0x70ec5bb0ae27 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/opt/ros/humble/lib/librclcpp.so+0x100e27)
+
+Indirect leak of 8 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb69c81 in rclcpp::SubscriptionBase::SubscriptionBase(rclcpp::node_interfaces::NodeBaseInterface*, rosidl_message_type_support_t const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rcl_subscription_options_s const&, bool) (/opt/ros/humble/lib/librclcpp.so+0x15fc81)
+
+Indirect leak of 8 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb567e6  (/opt/ros/humble/lib/librclcpp.so+0x14c7e6)
+
+Indirect leak of 8 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb62108 in rclcpp::PublisherBase::PublisherBase(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rosidl_message_type_support_t const&, rcl_publisher_options_s const&) (/opt/ros/humble/lib/librclcpp.so+0x158108)
+
+Indirect leak of 8 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb55a06  (/opt/ros/humble/lib/librclcpp.so+0x14ba06)
+
+Indirect leak of 8 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb5a4be in rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (/opt/ros/humble/lib/librclcpp.so+0x1504be)
+    #2 0x70ec5bb1b350 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x111350)
+
+Indirect leak of 8 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb59ac3 in rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (/opt/ros/humble/lib/librclcpp.so+0x14fac3)
+    #2 0x70ec5bb1b350 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x111350)
+
+Indirect leak of 8 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb593fa in rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (/opt/ros/humble/lib/librclcpp.so+0x14f3fa)
+    #2 0x70ec5bb1b350 in rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (/opt/ros/humble/lib/librclcpp.so+0x111350)
+
+Indirect leak of 8 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5bb575c6  (/opt/ros/humble/lib/librclcpp.so+0x14d5c6)
+
+Indirect leak of 4 byte(s) in 1 object(s) allocated from:
+    #0 0x70ec5bcb61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x70ec5b09bcee  (/opt/ros/humble/lib/librmw_cyclonedds_cpp.so+0x25cee)
+
+SUMMARY: AddressSanitizer: 14405 byte(s) leaked in 146 allocation(s).
++ echo
+
++ ./build/ros_segfault_min_dlopen ./build/libros_segfault_min_lib.so InitNode
+
+=================================================================
+==781674==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 192 byte(s) in 1 object(s) allocated from:
+    #0 0x7a51954b61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x7a519201af79  (<unknown module>)
+
+Direct leak of 64 byte(s) in 1 object(s) allocated from:
+    #0 0x7a51954b61e7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x7a5194f70a23  (/opt/ros/humble/lib/librosidl_typesupport_cpp.so+0x1a23)
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x7a51954b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x7a5190d8134c  (<unknown module>)
+
+Indirect leak of 2584 byte(s) in 2 object(s) allocated from:
+    #0 0x7a51954b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x7a5190d8134c  (<unknown module>)
+
+Indirect leak of 79 byte(s) in 1 object(s) allocated from:
+    #0 0x7a51954b4887 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0x7a5194f2285c in rcutils_strndup (/opt/ros/humble/lib/librcutils.so+0xc85c)
+
+SUMMARY: AddressSanitizer: 2951 byte(s) leaked in 6 allocation(s).
++ echo
+
++ ./build/ros_segfault_min_dlopen ./build/libros_segfault_min_lib.so InitAndLeakNode
+./run_asan.sh: line 33: 781684 Segmentation fault      (core dumped) ./build/ros_segfault_min_dlopen ./build/libros_segfault_min_lib.so InitAndLeakNode

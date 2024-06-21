@@ -96,3 +96,14 @@ at ../sysdeps/nptl/libc_start_call_main.h:74
 #14 0x00007ffff7c29e40 in __libc_start_main_impl (main=0x5555555551a9 <main>, argc=3, argv=0x7fffffffd748, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffd738) at ../csu/libc-start.c:392
 #15 0x00005555555550e5 in _start ()
 ```
+
+## Using Analysis Tools
+
+```sh
+
+$ ./run_asan.sh  # See ./run_asan.output.txt
+
+$ ./run_usan.sh  # See ./run_ubsan.output.txt
+
+$ ./run_valgrind.sh  # See ./run_valgrind.output.txt
+```

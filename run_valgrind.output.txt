@@ -1,0 +1,1044 @@
++ valgrind --leak-check=full ./build/ros_segfault_min_direct InitNode
+==783216== Memcheck, a memory error detector
+==783216== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==783216== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==783216== Command: ./build/ros_segfault_min_direct InitNode
+==783216== 
+==783216== 
+==783216== HEAP SUMMARY:
+==783216==     in use at exit: 41,485 bytes in 131 blocks
+==783216==   total heap usage: 6,386 allocs, 6,255 frees, 4,093,527 bytes allocated
+==783216== 
+==783216== 2,136 bytes in 1 blocks are possibly lost in loss record 69 of 72
+==783216==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783216==    by 0x570D34C: ddsrt_malloc (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783216==    by 0x56C54A9: thread_states_init (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783216==    by 0x56E3B92: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783216==    by 0x56FA351: dds_create_guardcondition (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783216==    by 0x55E0D01: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783216==    by 0x4F32E05: ??? (in /opt/ros/humble/lib/librcl.so)
+==783216==    by 0x4BB7D5F: rclcpp::GuardCondition::GuardCondition(std::shared_ptr<rclcpp::Context>, rcl_guard_condition_options_s) (in /opt/ros/humble/lib/librclcpp.so)
+==783216==    by 0x4BC8C17: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783216==    by 0x4BC0BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783216==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783216==    by 0x486370A: InitNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783216== 
+==783216== LEAK SUMMARY:
+==783216==    definitely lost: 0 bytes in 0 blocks
+==783216==    indirectly lost: 0 bytes in 0 blocks
+==783216==      possibly lost: 2,136 bytes in 1 blocks
+==783216==    still reachable: 39,349 bytes in 130 blocks
+==783216==         suppressed: 0 bytes in 0 blocks
+==783216== Reachable blocks (those to which a pointer was found) are not shown.
+==783216== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==783216== 
+==783216== For lists of detected and suppressed errors, rerun with: -s
+==783216== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
++ echo
+
++ valgrind --leak-check=full ./build/ros_segfault_min_direct InitAndLeakNode
+==783233== Memcheck, a memory error detector
+==783233== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==783233== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==783233== Command: ./build/ros_segfault_min_direct InitAndLeakNode
+==783233== 
+==783233== 
+==783233== HEAP SUMMARY:
+==783233==     in use at exit: 3,554,496 bytes in 3,401 blocks
+==783233==   total heap usage: 6,046 allocs, 2,645 frees, 4,025,250 bytes allocated
+==783233== 
+==783233== 336 bytes in 1 blocks are possibly lost in loss record 1,253 of 1,583
+==783233==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783233==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783233==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783233==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783233==    by 0x492D7B4: allocate_stack (allocatestack.c:430)
+==783233==    by 0x492D7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783233==    by 0x5712E13: ddsrt_thread_create (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56C572B: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56B46C5: gcreq_queue_start (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56EFA8C: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56F1D7F: dds_create_domain (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x55DD796: rmw_create_node (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F482E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4BC8CAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC0BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233== 
+==783233== 336 bytes in 1 blocks are possibly lost in loss record 1,254 of 1,583
+==783233==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783233==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783233==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783233==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783233==    by 0x492D7B4: allocate_stack (allocatestack.c:430)
+==783233==    by 0x492D7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783233==    by 0x5712E13: ddsrt_thread_create (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56C572B: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x572036E: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56EFA98: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56F1D7F: dds_create_domain (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x55DD796: rmw_create_node (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F482E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4BC8CAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC0BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233== 
+==783233== 336 bytes in 1 blocks are possibly lost in loss record 1,255 of 1,583
+==783233==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783233==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783233==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783233==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783233==    by 0x492D7B4: allocate_stack (allocatestack.c:430)
+==783233==    by 0x492D7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783233==    by 0x5712E13: ddsrt_thread_create (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56C572B: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x572036E: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56EFAA4: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56F1D7F: dds_create_domain (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x55DD796: rmw_create_node (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F482E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4BC8CAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC0BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233== 
+==783233== 336 bytes in 1 blocks are possibly lost in loss record 1,256 of 1,583
+==783233==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783233==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783233==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783233==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783233==    by 0x492D7B4: allocate_stack (allocatestack.c:430)
+==783233==    by 0x492D7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783233==    by 0x5712E13: ddsrt_thread_create (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56C572B: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56EFAB2: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56F1D7F: dds_create_domain (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x55DD796: rmw_create_node (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F482E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4BC8CAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC0BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233== 
+==783233== 336 bytes in 1 blocks are possibly lost in loss record 1,257 of 1,583
+==783233==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783233==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783233==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783233==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783233==    by 0x492D7B4: allocate_stack (allocatestack.c:430)
+==783233==    by 0x492D7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783233==    by 0x4DAD328: std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==783233==    by 0x55DD170: rmw_create_node (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F482E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4BC8CAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC0BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 408 bytes in 1 blocks are possibly lost in loss record 1,347 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E89AD: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C0CE21: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C0FC84: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 408 bytes in 1 blocks are possibly lost in loss record 1,348 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E89AD: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C0DC01: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C0FE4E: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 408 bytes in 1 blocks are possibly lost in loss record 1,349 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E89AD: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C0E9E1: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C10004: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 408 bytes in 1 blocks are possibly lost in loss record 1,350 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E89AD: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C1048F: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 408 bytes in 1 blocks are possibly lost in loss record 1,351 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E89AD: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C10EC7: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 408 bytes in 1 blocks are possibly lost in loss record 1,352 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E89AD: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C1186B: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 560 bytes in 1 blocks are possibly lost in loss record 1,427 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E65BB: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C0CE21: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C0FC84: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 560 bytes in 1 blocks are possibly lost in loss record 1,428 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E65BB: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C0DC01: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C0FE4E: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 560 bytes in 1 blocks are possibly lost in loss record 1,429 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E65BB: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C0E9E1: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C10004: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 560 bytes in 1 blocks are possibly lost in loss record 1,430 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E65BB: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C1048F: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 560 bytes in 1 blocks are possibly lost in loss record 1,431 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E65BB: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C10EC7: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 560 bytes in 1 blocks are possibly lost in loss record 1,432 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E65BB: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C1186B: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 560 bytes in 1 blocks are possibly lost in loss record 1,433 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55DBA4C: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55DBEA7: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55DE3DF: rmw_create_subscription (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49B7F: rcl_subscription_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C20CF7: rclcpp::SubscriptionBase::SubscriptionBase(rclcpp::node_interfaces::NodeBaseInterface*, rosidl_message_type_support_t const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rcl_subscription_options_s const&, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C2FD0D: std::_Function_handler<std::shared_ptr<rclcpp::SubscriptionBase> (rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&), rclcpp::create_subscription_factory<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}, std::allocator<void>, rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void>, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> > >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > >(rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}&&, rclcpp::SubscriptionOptionsWithAllocator<std::allocator<void> > const&, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > > >)::{lambda(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&)#1}>::_M_invoke(std::_Any_data const&, rclcpp::node_interfaces::NodeBaseInterface*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C291E2: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C2A901: rclcpp::TimeSource::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BDE157: rclcpp::node_interfaces::NodeTimeSource::NodeTimeSource(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>, rclcpp::QoS const&, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC17E1: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233== 
+==783233== 568 bytes in 1 blocks are possibly lost in loss record 1,436 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E659F: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C0CE21: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C0FC84: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 568 bytes in 1 blocks are possibly lost in loss record 1,437 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E659F: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C0DC01: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C0FE4E: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 568 bytes in 1 blocks are possibly lost in loss record 1,438 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E659F: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C0E9E1: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4C10004: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 568 bytes in 1 blocks are possibly lost in loss record 1,439 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E659F: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C1048F: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 568 bytes in 1 blocks are possibly lost in loss record 1,440 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E659F: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C10EC7: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 568 bytes in 1 blocks are possibly lost in loss record 1,441 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55E659F: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55E89DB: rmw_create_service (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F49208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C1186B: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD2350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== 568 bytes in 1 blocks are possibly lost in loss record 1,442 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x55DAE05: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55DB276: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55DB52F: rmw_create_publisher (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F47352: rcl_publisher_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4C1917D: rclcpp::PublisherBase::PublisherBase(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rosidl_message_type_support_t const&, rcl_publisher_options_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BDD66B: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BDDDA0: std::_Function_handler<std::shared_ptr<rclcpp::PublisherBase> (rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&), rclcpp::create_publisher_factory<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void>, rclcpp::Publisher<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> > >(rclcpp::PublisherOptionsWithAllocator<std::allocator<void> > const&)::{lambda(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&)#1}>::_M_invoke(std::_Any_data const&, rclcpp::node_interfaces::NodeBaseInterface*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BD26A3: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC15ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233== 
+==783233== 1,008 bytes in 3 blocks are possibly lost in loss record 1,537 of 1,583
+==783233==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783233==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783233==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783233==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783233==    by 0x492D7B4: allocate_stack (allocatestack.c:430)
+==783233==    by 0x492D7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783233==    by 0x5712E13: ddsrt_thread_create (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56C572B: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56EFD3B: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56F1D7F: dds_create_domain (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x55DD796: rmw_create_node (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F482E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4BC8CAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC0BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233== 
+==783233== 2,072 bytes in 1 blocks are possibly lost in loss record 1,557 of 1,583
+==783233==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783233==    by 0x4013E4D: malloc (rtld-malloc.h:56)
+==783233==    by 0x4013E4D: allocate_dtv_entry (dl-tls.c:684)
+==783233==    by 0x4013E4D: allocate_and_init (dl-tls.c:709)
+==783233==    by 0x4013E4D: tls_get_addr_tail (dl-tls.c:907)
+==783233==    by 0x401820B: __tls_get_addr (tls_get_addr.S:55)
+==783233==    by 0x56F8959: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56F8FAA: dds_take (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x55D4B34: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x55D2D82: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4DAD252: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==783233==    by 0x492CAC2: start_thread (pthread_create.c:442)
+==783233==    by 0x49BDA03: clone (clone.S:100)
+==783233== 
+==783233== 2,136 bytes in 1 blocks are possibly lost in loss record 1,560 of 1,583
+==783233==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783233==    by 0x570D34C: ddsrt_malloc (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56C54A9: thread_states_init (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56E3B92: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x56FA351: dds_create_guardcondition (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x55E0D01: ??? (in /opt/ros/humble/lib/librmw_cyclonedds_cpp.so)
+==783233==    by 0x4F32E05: ??? (in /opt/ros/humble/lib/librcl.so)
+==783233==    by 0x4BB7D5F: rclcpp::GuardCondition::GuardCondition(std::shared_ptr<rclcpp::Context>, rcl_guard_condition_options_s) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC8C17: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC0BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x4BC1E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783233==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233== 
+==783233== 12,432 bytes in 6 blocks are possibly lost in loss record 1,580 of 1,583
+==783233==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783233==    by 0x4013E4D: malloc (rtld-malloc.h:56)
+==783233==    by 0x4013E4D: allocate_dtv_entry (dl-tls.c:684)
+==783233==    by 0x4013E4D: allocate_and_init (dl-tls.c:709)
+==783233==    by 0x4013E4D: tls_get_addr_tail (dl-tls.c:907)
+==783233==    by 0x401820B: __tls_get_addr (tls_get_addr.S:55)
+==783233==    by 0x56C5029: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x5710E0B: ??? (in /opt/ros/humble/lib/x86_64-linux-gnu/libddsc.so.0.10.4)
+==783233==    by 0x492CAC2: start_thread (pthread_create.c:442)
+==783233==    by 0x49BDA03: clone (clone.S:100)
+==783233== 
+==783233== 14,405 (896 direct, 13,509 indirect) bytes in 1 blocks are definitely lost in loss record 1,581 of 1,583
+==783233==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783233==    by 0x486385E: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783233==    by 0x109237: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_direct)
+==783233== 
+==783233== LEAK SUMMARY:
+==783233==    definitely lost: 896 bytes in 1 blocks
+==783233==    indirectly lost: 13,509 bytes in 145 blocks
+==783233==      possibly lost: 29,672 bytes in 36 blocks
+==783233==    still reachable: 3,510,419 bytes in 3,219 blocks
+==783233==         suppressed: 0 bytes in 0 blocks
+==783233== Reachable blocks (those to which a pointer was found) are not shown.
+==783233== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==783233== 
+==783233== For lists of detected and suppressed errors, rerun with: -s
+==783233== ERROR SUMMARY: 30 errors from 30 contexts (suppressed: 0 from 0)
++ echo
+
++ valgrind --leak-check=full ./build/ros_segfault_min_dlopen ./build/libros_segfault_min_lib.so InitNode
+==783243== Memcheck, a memory error detector
+==783243== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==783243== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==783243== Command: ./build/ros_segfault_min_dlopen ./build/libros_segfault_min_lib.so InitNode
+==783243== 
+==783243== 
+==783243== HEAP SUMMARY:
+==783243==     in use at exit: 150,870 bytes in 222 blocks
+==783243==   total heap usage: 6,548 allocs, 6,326 frees, 4,151,526 bytes allocated
+==783243== 
+==783243== 143 (64 direct, 79 indirect) bytes in 1 blocks are definitely lost in loss record 48 of 79
+==783243==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783243==    by 0x54DFA23: ??? (in /opt/ros/humble/lib/librosidl_typesupport_cpp.so)
+==783243==    by 0x55EEE38: ???
+==783243==    by 0x55CD077: ???
+==783243==    by 0x55CD276: ???
+==783243==    by 0x55CEF3B: ???
+==783243==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783243==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x486370A: InitNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783243==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783243== 
+==783243== 192 bytes in 1 blocks are definitely lost in loss record 52 of 79
+==783243==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783243==    by 0x55C4F79: ???
+==783243==    by 0x55CE592: ???
+==783243==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783243==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x486370A: InitNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783243==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783243== 
+==783243== 2,136 bytes in 1 blocks are possibly lost in loss record 73 of 79
+==783243==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783243==    by 0x56FF34C: ???
+==783243==    by 0x56B74A9: ???
+==783243==    by 0x56D5B92: ???
+==783243==    by 0x56EC351: ???
+==783243==    by 0x55D2D01: ???
+==783243==    by 0x5333E05: ??? (in /opt/ros/humble/lib/librcl.so)
+==783243==    by 0x4FABD5F: rclcpp::GuardCondition::GuardCondition(std::shared_ptr<rclcpp::Context>, rcl_guard_condition_options_s) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FBCC17: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x486370A: InitNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783243== 
+==783243== 2,616 (32 direct, 2,584 indirect) bytes in 1 blocks are definitely lost in loss record 74 of 79
+==783243==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783243==    by 0x56FF34C: ???
+==783243==    by 0x56FF37D: ???
+==783243==    by 0x56DC9F3: ???
+==783243==    by 0x56D5B97: ???
+==783243==    by 0x56EC351: ???
+==783243==    by 0x55D2D01: ???
+==783243==    by 0x5333E05: ??? (in /opt/ros/humble/lib/librcl.so)
+==783243==    by 0x4FABD5F: rclcpp::GuardCondition::GuardCondition(std::shared_ptr<rclcpp::Context>, rcl_guard_condition_options_s) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FBCC17: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783243==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783243== 
+==783243== LEAK SUMMARY:
+==783243==    definitely lost: 288 bytes in 3 blocks
+==783243==    indirectly lost: 2,663 bytes in 3 blocks
+==783243==      possibly lost: 2,136 bytes in 1 blocks
+==783243==    still reachable: 145,783 bytes in 215 blocks
+==783243==         suppressed: 0 bytes in 0 blocks
+==783243== Reachable blocks (those to which a pointer was found) are not shown.
+==783243== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==783243== 
+==783243== For lists of detected and suppressed errors, rerun with: -s
+==783243== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
++ echo
+
++ valgrind --leak-check=full ./build/ros_segfault_min_dlopen ./build/libros_segfault_min_lib.so InitAndLeakNode
+==783253== Memcheck, a memory error detector
+==783253== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==783253== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==783253== Command: ./build/ros_segfault_min_dlopen ./build/libros_segfault_min_lib.so InitAndLeakNode
+==783253== 
+==783253== 
+==783253== HEAP SUMMARY:
+==783253==     in use at exit: 3,664,601 bytes in 3,496 blocks
+==783253==   total heap usage: 6,217 allocs, 2,721 frees, 4,084,343 bytes allocated
+==783253== 
+==783253== 143 (64 direct, 79 indirect) bytes in 1 blocks are definitely lost in loss record 1,034 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x54DFA23: ??? (in /opt/ros/humble/lib/librosidl_typesupport_cpp.so)
+==783253==    by 0x55EEE38: ???
+==783253==    by 0x55CD077: ???
+==783253==    by 0x55CD276: ???
+==783253==    by 0x55CEF3B: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 240 (192 direct, 48 indirect) bytes in 1 blocks are definitely lost in loss record 1,150 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55C4F79: ???
+==783253==    by 0x55CE592: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 336 bytes in 1 blocks are possibly lost in loss record 1,258 of 1,594
+==783253==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783253==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783253==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783253==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783253==    by 0x491E7B4: allocate_stack (allocatestack.c:430)
+==783253==    by 0x491E7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783253==    by 0x5704E13: ???
+==783253==    by 0x56B772B: ???
+==783253==    by 0x56A66C5: ???
+==783253==    by 0x56E1A8C: ???
+==783253==    by 0x56E3D7F: ???
+==783253==    by 0x55CF796: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253== 
+==783253== 336 bytes in 1 blocks are possibly lost in loss record 1,259 of 1,594
+==783253==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783253==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783253==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783253==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783253==    by 0x491E7B4: allocate_stack (allocatestack.c:430)
+==783253==    by 0x491E7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783253==    by 0x5704E13: ???
+==783253==    by 0x56B772B: ???
+==783253==    by 0x571236E: ???
+==783253==    by 0x56E1A98: ???
+==783253==    by 0x56E3D7F: ???
+==783253==    by 0x55CF796: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253== 
+==783253== 336 bytes in 1 blocks are possibly lost in loss record 1,260 of 1,594
+==783253==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783253==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783253==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783253==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783253==    by 0x491E7B4: allocate_stack (allocatestack.c:430)
+==783253==    by 0x491E7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783253==    by 0x5704E13: ???
+==783253==    by 0x56B772B: ???
+==783253==    by 0x571236E: ???
+==783253==    by 0x56E1AA4: ???
+==783253==    by 0x56E3D7F: ???
+==783253==    by 0x55CF796: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253== 
+==783253== 336 bytes in 1 blocks are possibly lost in loss record 1,261 of 1,594
+==783253==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783253==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783253==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783253==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783253==    by 0x491E7B4: allocate_stack (allocatestack.c:430)
+==783253==    by 0x491E7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783253==    by 0x5704E13: ???
+==783253==    by 0x56B772B: ???
+==783253==    by 0x56E1AB2: ???
+==783253==    by 0x56E3D7F: ???
+==783253==    by 0x55CF796: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253== 
+==783253== 336 bytes in 1 blocks are possibly lost in loss record 1,262 of 1,594
+==783253==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783253==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783253==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783253==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783253==    by 0x491E7B4: allocate_stack (allocatestack.c:430)
+==783253==    by 0x491E7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783253==    by 0x51B5328: std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==783253==    by 0x55CF170: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 408 bytes in 1 blocks are possibly lost in loss record 1,353 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55DA9AD: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5000E21: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5003C84: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 408 bytes in 1 blocks are possibly lost in loss record 1,354 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55DA9AD: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5001C01: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5003E4E: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 408 bytes in 1 blocks are possibly lost in loss record 1,355 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55DA9AD: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x50029E1: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5004004: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 408 bytes in 1 blocks are possibly lost in loss record 1,356 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55DA9AD: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x500448F: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 408 bytes in 1 blocks are possibly lost in loss record 1,357 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55DA9AD: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5004EC7: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 408 bytes in 1 blocks are possibly lost in loss record 1,358 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55DA9AD: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x500586B: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 536 bytes in 1 blocks are possibly lost in loss record 1,424 of 1,594
+==783253==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783253==    by 0x56FF34C: ???
+==783253==    by 0x56CFE63: ???
+==783253==    by 0x56EC395: ???
+==783253==    by 0x55D2D01: ???
+==783253==    by 0x5333E05: ??? (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FABD5F: rclcpp::GuardCondition::GuardCondition(std::shared_ptr<rclcpp::Context>, rcl_guard_condition_options_s) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FBCC17: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 536 bytes in 1 blocks are possibly lost in loss record 1,425 of 1,594
+==783253==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783253==    by 0x56FF34C: ???
+==783253==    by 0x56CFE63: ???
+==783253==    by 0x56EC395: ???
+==783253==    by 0x55D2D01: ???
+==783253==    by 0x55CEFAF: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 536 bytes in 1 blocks are possibly lost in loss record 1,426 of 1,594
+==783253==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783253==    by 0x56FF34C: ???
+==783253==    by 0x56CFE63: ???
+==783253==    by 0x56EC395: ???
+==783253==    by 0x55D2D01: ???
+==783253==    by 0x5333E05: ??? (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FABD5F: rclcpp::GuardCondition::GuardCondition(std::shared_ptr<rclcpp::Context>, rcl_guard_condition_options_s) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FABF39: rclcpp::graph_listener::GraphListener::GraphListener(std::shared_ptr<rclcpp::Context> const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FBD409: rclcpp::node_interfaces::NodeGraph::NodeGraph(rclcpp::node_interfaces::NodeBaseInterface*) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4C79: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253== 
+==783253== 560 bytes in 1 blocks are possibly lost in loss record 1,433 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D85BB: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5000E21: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5003C84: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 560 bytes in 1 blocks are possibly lost in loss record 1,434 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D85BB: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5001C01: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5003E4E: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 560 bytes in 1 blocks are possibly lost in loss record 1,435 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D85BB: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x50029E1: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5004004: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 560 bytes in 1 blocks are possibly lost in loss record 1,436 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D85BB: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x500448F: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 560 bytes in 1 blocks are possibly lost in loss record 1,437 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D85BB: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5004EC7: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 560 bytes in 1 blocks are possibly lost in loss record 1,438 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D85BB: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x500586B: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 560 bytes in 1 blocks are possibly lost in loss record 1,439 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55CDA4C: ???
+==783253==    by 0x55CDEA7: ???
+==783253==    by 0x55D03DF: ???
+==783253==    by 0x534AB7F: rcl_subscription_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5014CF7: rclcpp::SubscriptionBase::SubscriptionBase(rclcpp::node_interfaces::NodeBaseInterface*, rosidl_message_type_support_t const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rcl_subscription_options_s const&, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5023D0D: std::_Function_handler<std::shared_ptr<rclcpp::SubscriptionBase> (rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&), rclcpp::create_subscription_factory<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}, std::allocator<void>, rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void>, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> > >, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >, rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > >(rclcpp::TimeSource::NodeState::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>)::{lambda(std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > const>)#1}&&, rclcpp::SubscriptionOptionsWithAllocator<std::allocator<void> > const&, rclcpp::message_memory_strategy::MessageMemoryStrategy<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> >::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> > > >)::{lambda(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&)#1}>::_M_invoke(std::_Any_data const&, rclcpp::node_interfaces::NodeBaseInterface*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x501D1E2: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x501E901: rclcpp::TimeSource::attachNode(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FD2157: rclcpp::node_interfaces::NodeTimeSource::NodeTimeSource(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeParametersInterface>, rclcpp::QoS const&, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB57E1: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253== 
+==783253== 568 bytes in 1 blocks are possibly lost in loss record 1,442 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D859F: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5000E21: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5003C84: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 568 bytes in 1 blocks are possibly lost in loss record 1,443 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D859F: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5001C01: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5003E4E: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 568 bytes in 1 blocks are possibly lost in loss record 1,444 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D859F: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x50029E1: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x5004004: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 568 bytes in 1 blocks are possibly lost in loss record 1,445 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D859F: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x500448F: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 568 bytes in 1 blocks are possibly lost in loss record 1,446 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D859F: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x5004EC7: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 568 bytes in 1 blocks are possibly lost in loss record 1,447 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55D859F: ???
+==783253==    by 0x55DA9DB: ???
+==783253==    by 0x534A208: rcl_service_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x500586B: rclcpp::ParameterService::ParameterService(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, rclcpp::node_interfaces::NodeParametersInterface*, rmw_qos_profile_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC6350: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 568 bytes in 1 blocks are possibly lost in loss record 1,448 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x55CCE05: ???
+==783253==    by 0x55CD276: ???
+==783253==    by 0x55CD52F: ???
+==783253==    by 0x5348352: rcl_publisher_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x500D17D: rclcpp::PublisherBase::PublisherBase(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rosidl_message_type_support_t const&, rcl_publisher_options_s const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FD166B: ??? (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FD1DA0: std::_Function_handler<std::shared_ptr<rclcpp::PublisherBase> (rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&), rclcpp::create_publisher_factory<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void>, rclcpp::Publisher<rcl_interfaces::msg::ParameterEvent_<std::allocator<void> >, std::allocator<void> > >(rclcpp::PublisherOptionsWithAllocator<std::allocator<void> > const&)::{lambda(rclcpp::node_interfaces::NodeBaseInterface*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&)#1}>::_M_invoke(std::_Any_data const&, rclcpp::node_interfaces::NodeBaseInterface*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::QoS const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FC66A3: rclcpp::node_interfaces::NodeParameters::NodeParameters(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeLoggingInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeClockInterface>, std::vector<rclcpp::Parameter, std::allocator<rclcpp::Parameter> > const&, bool, bool, rclcpp::QoS const&, rclcpp::PublisherOptionsBase const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB55ED: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253== 
+==783253== 1,008 bytes in 3 blocks are possibly lost in loss record 1,542 of 1,594
+==783253==    at 0x484DA83: calloc (vg_replace_malloc.c:1328)
+==783253==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==783253==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==783253==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==783253==    by 0x491E7B4: allocate_stack (allocatestack.c:430)
+==783253==    by 0x491E7B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==783253==    by 0x5704E13: ???
+==783253==    by 0x56B772B: ???
+==783253==    by 0x56E1D3B: ???
+==783253==    by 0x56E3D7F: ???
+==783253==    by 0x55CF796: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253== 
+==783253== 2,072 bytes in 1 blocks are possibly lost in loss record 1,565 of 1,594
+==783253==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783253==    by 0x4013E4D: malloc (rtld-malloc.h:56)
+==783253==    by 0x4013E4D: allocate_dtv_entry (dl-tls.c:684)
+==783253==    by 0x4013E4D: allocate_and_init (dl-tls.c:709)
+==783253==    by 0x4013E4D: tls_get_addr_tail (dl-tls.c:907)
+==783253==    by 0x401820B: __tls_get_addr (tls_get_addr.S:55)
+==783253==    by 0x56EA959: ???
+==783253==    by 0x56EAFAA: ???
+==783253==    by 0x55C6B34: ???
+==783253==    by 0x55C4D82: ???
+==783253==    by 0x51B5252: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==783253==    by 0x491DAC2: start_thread (pthread_create.c:442)
+==783253==    by 0x49AEA03: clone (clone.S:100)
+==783253== 
+==783253== 2,080 (32 direct, 2,048 indirect) bytes in 1 blocks are definitely lost in loss record 1,566 of 1,594
+==783253==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783253==    by 0x56FF34C: ???
+==783253==    by 0x56FF37D: ???
+==783253==    by 0x56DC9F3: ???
+==783253==    by 0x56D5B97: ???
+==783253==    by 0x56EC351: ???
+==783253==    by 0x55D2D01: ???
+==783253==    by 0x5333E05: ??? (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FABD5F: rclcpp::GuardCondition::GuardCondition(std::shared_ptr<rclcpp::Context>, rcl_guard_condition_options_s) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FBCC17: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253== 
+==783253== 2,136 bytes in 1 blocks are possibly lost in loss record 1,569 of 1,594
+==783253==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783253==    by 0x56FF34C: ???
+==783253==    by 0x56B74A9: ???
+==783253==    by 0x56D5B92: ???
+==783253==    by 0x56EC351: ???
+==783253==    by 0x55D2D01: ???
+==783253==    by 0x5333E05: ??? (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FABD5F: rclcpp::GuardCondition::GuardCondition(std::shared_ptr<rclcpp::Context>, rcl_guard_condition_options_s) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FBCC17: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253== 
+==783253== 8,368 (8,224 direct, 144 indirect) bytes in 4 blocks are definitely lost in loss record 1,586 of 1,594
+==783253==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783253==    by 0x56FF34C: ???
+==783253==    by 0x56EE0C6: ???
+==783253==    by 0x568F5D7: ???
+==783253==    by 0x56D0CC1: ???
+==783253==    by 0x55CED68: ???
+==783253==    by 0x53492E9: rcl_node_init (in /opt/ros/humble/lib/librcl.so)
+==783253==    by 0x4FBCCAC: rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::shared_ptr<rclcpp::Context>, rcl_node_options_s const&, bool, bool) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB4BF6: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x4FB5E27: rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (in /opt/ros/humble/lib/librclcpp.so)
+==783253==    by 0x486386F: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== 12,432 bytes in 6 blocks are possibly lost in loss record 1,590 of 1,594
+==783253==    at 0x4848899: malloc (vg_replace_malloc.c:381)
+==783253==    by 0x4013E4D: malloc (rtld-malloc.h:56)
+==783253==    by 0x4013E4D: allocate_dtv_entry (dl-tls.c:684)
+==783253==    by 0x4013E4D: allocate_and_init (dl-tls.c:709)
+==783253==    by 0x4013E4D: tls_get_addr_tail (dl-tls.c:907)
+==783253==    by 0x401820B: __tls_get_addr (tls_get_addr.S:55)
+==783253==    by 0x56B7029: ???
+==783253==    by 0x5702E0B: ???
+==783253==    by 0x491DAC2: start_thread (pthread_create.c:442)
+==783253==    by 0x49AEA03: clone (clone.S:100)
+==783253== 
+==783253== 14,405 (896 direct, 13,509 indirect) bytes in 1 blocks are definitely lost in loss record 1,591 of 1,594
+==783253==    at 0x4849013: operator new(unsigned long) (vg_replace_malloc.c:422)
+==783253==    by 0x486385E: InitAndLeakNode (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/libros_segfault_min_lib.so)
+==783253==    by 0x109291: main (in /home/eacousineau/proj/tri/repo/externals/tmp/rclcpp_dlclose_segfault/build/ros_segfault_min_dlopen)
+==783253== 
+==783253== LEAK SUMMARY:
+==783253==    definitely lost: 9,408 bytes in 8 blocks
+==783253==    indirectly lost: 15,828 bytes in 149 blocks
+==783253==      possibly lost: 31,280 bytes in 39 blocks
+==783253==    still reachable: 3,608,085 bytes in 3,300 blocks
+==783253==         suppressed: 0 bytes in 0 blocks
+==783253== Reachable blocks (those to which a pointer was found) are not shown.
+==783253== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==783253== 
+==783253== For lists of detected and suppressed errors, rerun with: -s
+==783253== ERROR SUMMARY: 37 errors from 37 contexts (suppressed: 0 from 0)

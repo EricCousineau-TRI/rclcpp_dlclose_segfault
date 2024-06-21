@@ -1,0 +1,4 @@
++ ./build/ros_segfault_min_direct InitNode
++ ./build/ros_segfault_min_direct InitAndLeakNode
++ ./build/ros_segfault_min_dlopen ./build/libros_segfault_min_lib.so InitNode
++ ./build/ros_segfault_min_dlopen ./build/libros_segfault_min_lib.so InitAndLeakNode
