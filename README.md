@@ -1,5 +1,37 @@
 # `rclcpp_dlclose_segfault`
 
+Relates to Drake, `drake-ros`, and `pydrake`.
+
+Due to a workaround in pydrake <https://github.com/RobotLocomotion/drake/pull/14356>,
+we may not always release certain objects. (Non-ideal, but will take some effort to fix.)
+
+If we have components that use `rclcpp::Node`, but are not deleted, we can encounter segfaults.
+
+Example minimal code (from `src/ros_segfault_min_lib.cc`) capturing the core issue:
+
+```cc
+// Expected case: rclcpp::Node will be freed.
+void InitNode() {
+  RclcppInit();
+  rclcpp::Node("node");
+}
+
+// Bad case: rclcpp::Node is leaked :(
+void InitAndLeakNode() {
+  RclcppInit();
+  new rclcpp::Node("node");
+}
+```
+
+This shows three cases, running 200 trials, 50 in parallel
+
+- `direct_leak`: Link a shared lib directly, call `InitAndLeakNode()`. No segfaults.
+- `dlopen_noleak`: `dlopen()` shared lib, call `InitNode()`. No segfaults.
+- `dlopen_leak`: `dlopen()` lib, call `InitAndLeakNode()`. Many segfaults.
+
+The ideal workaround is that `dlclose()` ideally does not trigger segfaults when (poorly)
+leaking `rclcpp::Node` instances.
+
 ## Output
 
 Errors w/ `dlopen_leak` are non-deterministic
